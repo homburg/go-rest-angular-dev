@@ -49,15 +49,11 @@
 	<body class="container">
 		<h1>Hello app!</h1>
 
-		<div ng-view=""></div>
-
 		<div ng-app="myApp" ng-controller="HelloCtrl">
 			<input type="text" class="form-control" ng-model="searchText"/><br />
 			<ul>
 				<li ng-repeat="person in filteredPersons = (persons | filter:searchText)" class="my-repeat-animation" ng-click="$parent.ixActivePerson = $index">
-					<button class="btn btn-success" ng-click="deletePerson($index)">Slet</button>&nbsp;
-					<span ng-bind="person.name"></span>&nbsp;
-					<em ng-bind="person.job"></em>&nbsp;
+					<person given-person="person" delete="deletePerson($index)"/>
 				</li>
 			</ul>
 			<div>I alt {{filteredPersons.length}} / {{persons.length}}</div>

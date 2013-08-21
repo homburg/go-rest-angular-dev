@@ -5,6 +5,17 @@
 		return $resource("/persons/:id", {"id": "@id"});
 	});
 
+	app.directive("person", function() {
+		return {
+			restrict: "E",
+			scope: {
+				person: "=givenPerson",
+				delete: "&"
+			},
+			templateUrl: "person.html"
+		}
+	});
+
 	app.controller("HelloCtrl", function($scope, Persons) {
 
 		$scope.persons = Persons.query(function () {
@@ -15,7 +26,6 @@
 		$scope.addPerson = function () {
 			var p = new Persons($scope.newPerson);
 			p.$save(function (newResource) {
-				console.log(newResource)
 				$scope.persons.push(newResource)
 			});
 		};
