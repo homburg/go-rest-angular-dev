@@ -2,7 +2,7 @@
 	var app = angular.module("myApp", ["ngResource"]);
 
 	app.factory("Persons", function ($resource) {
-		return $resource("/persons23213/:id", {"id": "@id"});
+		return $resource("/persons/:id", {"id": "@id"});
 	});
 
 	app.controller("HelloCtrl", function($scope, Persons) {
@@ -15,6 +15,7 @@
 		$scope.addPerson = function () {
 			var p = new Persons($scope.newPerson);
 			p.$save(function (newResource) {
+				console.log(newResource)
 				$scope.persons.push(newResource)
 			});
 		};

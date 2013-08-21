@@ -1,7 +1,11 @@
 {
-	"name": "angular-dev",
-	"dependencies": {
-		"angular-1.1.x": "~1",
-		"bootstrap": "~2"
-	}
+  "name": "angular-dev",
+  "dependencies": {
+    "angular": "1.2.0rc1",
+    "angular-resource": "1.2.0rc1",
+    "bootstrap": "~2"
+  },
+  "resolutions": {
+    "angular": "1.2.0rc1"
+  }
 }

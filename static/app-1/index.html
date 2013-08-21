@@ -42,11 +42,14 @@
 	<link rel="stylesheet" type="text/css" href="http://bootswatch.com/slate/bootstrap.min.css" />
 	<!-- workaound for jqlite -->
 	<script type="text/javascript" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
-	<script type="text/javascript" src="bower_components/angular-1.1.x/angular.js"></script>
-	<script type="text/javascript" src="bower_components/angular-1.1.x/angular-resource.js"></script>
+	<script type="text/javascript" src="/static/bower_components/angular/angular.js"></script>
+	<script type="text/javascript" src="/static/bower_components/angular-resource/angular-resource.js"></script>
 	<script type="text/javascript" src="app.js"></script>
 	<body class="container">
 		<h1>Hello app!</h1>
+
+		<div ng-view=""></div>
+
 		<div ng-app="myApp" ng-controller="HelloCtrl">
 			<input type="text" class="form-control" ng-model="searchText"/><br />
 			<ul>
