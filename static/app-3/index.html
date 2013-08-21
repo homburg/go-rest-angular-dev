@@ -1,0 +1,80 @@
+<html>
+	<head></head>
+	<style type="text/css">
+	li {
+		cursor: pointer;
+	}
+	.my-repeat-animation.ng-enter, 
+	.my-repeat-animation.ng-leave
+	{ 
+		-webkit-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+		-moz-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+		-ms-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+		-o-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+		transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+		position: relative;
+		display: block;
+		overflow: hidden;
+		text-overflow: clip;
+		white-space:nowrap;
+	} 
+	 
+	.my-repeat-animation.ng-leave.my-repeat-animation.ng-leave-active,
+	.my-repeat-animation.ng-enter {
+		opacity: 0;
+		width: 0px;
+		height: 0px;
+	}
+	 
+	.my-repeat-animation.ng-enter.my-repeat-animation.ng-enter-active, 
+	.my-repeat-animation.ng-leave {
+		opacity: 1;
+		width: 150px;
+		height: 30px;
+	}
+	button {
+		cursor: pointer;
+	}
+	</style>
+	<!-- <link rel="stylesheet" type="text/css" href="http://bootswatch.com/2/superhero/bootstrap.min.css" /> -->
+	<!-- <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/css/bootstrap.min.css" /> -->
+	
+	<link rel="stylesheet" type="text/css" href="http://bootswatch.com/slate/bootstrap.min.css" />
+	<!-- workaound for jqlite -->
+	<script type="text/javascript" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+	<script type="text/javascript" src="/static/bower_components/angular/angular.js"></script>
+	<script type="text/javascript" src="/static/bower_components/angular-resource/angular-resource.js"></script>
+	<script type="text/javascript" src="/static/bower_components/angular-animate/angular-animate.js"></script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.5.0/ui-bootstrap-tpls.min.js"></script>
+	<script type="text/javascript" src="app.js"></script>
+	<body class="container">
+		<h1>Hello app!</h1>
+
+		<div ng-app="myApp" ng-controller="HelloCtrl">
+			<input type="text" class="form-control" ng-model="searchText"/><br />
+			<ul>
+				<li ng-repeat="person in filteredPersons = (persons | filter:searchText)" class="my-repeat-animation" ng-click="$parent.ixActivePerson = $index">
+					<person given-person="person" delete="deletePerson($index)"/>
+				</li>
+			</ul>
+			<div>I alt {{filteredPersons.length}} / {{persons.length}}</div>
+			
+			<pre ng-bind="persons[ixActivePerson]|json"></pre>
+
+			<form ng-submit="addPerson()">
+				<label for="new-person-name">Navn: <input class="form-control" type="text" ng-model="newPerson.name" /></label><br />
+				<label for="new-person-job">Job: <input class="form-control" type="text" ng-model="newPerson.job" /></label><br />
+				<input type="submit" value="Gem" />
+				<input type="reset" value="Nulstil" /><br />
+			</form>
+
+			<br />
+
+			<tabset>
+				<tab ng-repeat="person in persons" heading="{{person.name}}" active="person.id == persons[ixActivePerson].id">
+					<div style="padding: 1em;"><em ng-bind="person.job"></em></div>
+				</tab>
+			</tabset>
+		</div>
+	</body>
+</html>
